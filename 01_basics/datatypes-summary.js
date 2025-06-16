@@ -38,3 +38,39 @@ const myFunction =function(){
 console.log(typeof heros); //object
 console.log(typeof myObj); //object
 console.log(typeof myFunction);//function or  object funtion
+
+
+
+
+//+++++++++++++++++++++++++++++++++++++++++++
+
+
+//memory:stack & heap
+
+// stack(primitive)   & heap(non-primitive)
+
+let myYoutubename="avinashkumardotcom"
+
+let anothername=myYoutubename
+anothername="chai aur code"
+ 
+console.log(myYoutubename);
+console.log(anothername);
+
+//to acces object element we uses dot(.)
+
+let userOne={
+   email:"user@google.com",
+   upi:"user@ybl"
+}
+let userTwo=userOne
+
+userTwo.email="avinash@google.com"
+
+console.log(userOne.email);
+console.log(userTwo.email);
+
+
+
+// in stack whatever change takes place in the copy value
+// in heap whatever changes takes place it occurs in the referenced value.
