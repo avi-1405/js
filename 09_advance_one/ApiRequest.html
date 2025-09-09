@@ -1,0 +1,95 @@
+<!--
+    1. To read json file , we use json formatter bcoz it beautify file and makes it easy to understand.
+
+                    some api's:
+
+    2.api.github.com  -> some public api's are given there
+    3.api.github.com/users/avinashkumar -> some api's given for yourself.
+    4.randomUser.me
+-->
+
+<!--
+    API  is a talking language between two component and those component can be:
+    - frontend and backend of your device
+    - frontend and backend of others device
+    - frontend of your device and backend of others device
+    - frontend in java and backend in javascript,etc.....
+-->
+
+<!--
+    there are different of ways of requesting API'S:
+    1- XMLHTTPREQUEST -> it is the old way of requesting API but still it is in use in many of frameworks.
+    2. fetch() -> it is the modern way of requesting API , and now a days it is used mostly. 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="background-color: #212121;">
+    <!--
+        The XMLHttpRequest.readyState property returns the state an XMLHttpRequest client is in. An XHR client exists in one of the following states:
+
+    Value	State	            Description
+    0	    UNSENT	        Client has been created. open() not called yet.
+    1	    OPENED	        open() has been called.
+    2	HEADERS_RECEIVED	send() has been called, and headers and status are     available.
+    3	    LOADING	        Downloading; responseText holds partial data.
+    4	    DONE	        The operation is complete.
+    -->
+</body>
+<script>
+    const requestUrl = 'https://api.github.com/users/hiteshchoudhary'
+    const xhr = new XMLHttpRequest()
+    xhr.open('GET', requestUrl)
+    // request is still not called for that we need to call it explicitly.
+
+
+    console.log(xhr.readyState)
+    // current state of the ready state
+
+
+    xhr.onreadystatechange = function () {
+        console.log(xhr.readyState)
+        if (xhr.readyState === 4) {
+            // return of the function is called "responseText". this is an in-built variable name of the return .
+            //and to get the return value of this function we need to use "this.responseText" which provide the return of the function.
+            // ".this" -> it is used when we are talking about the current context
+
+            const data = JSON.parse(this.responseText)
+            //the return type can be anything: it is mainly a string type and rarely object type.
+            // if the return type is string then we can't access it's element and then we need to change it's datatype to JSON object.
+
+
+            console.log(data.followers)
+            // getting the element of the object
+        }
+    }
+    //this method is used to continuosly track the change of ready state i.e. this function  executes multiple times.
+    //this method is  called only when the ready state is change
+    // this is asynchorous programming bcoz it is called whenever there is change in the state.
+    console.log("here1")
+
+
+    xhr.send()
+    console.log("here2")
+    // now the request is send to the website.
+    // after sending the request the status i.e. the ready state changes continuosly.
+    // and to track the changes of ready state, we call the method: onreadystatechange.
+</script>
+
+
+<!--
+            CONSOLE || CONSOLE.LOG  
+console is not a part of a core js.
+it is a debugging developer tool which is present in the run time environment(node.js) or in the browser.
+this api is inject in the js through run time environment or browser.
+actual implementation of console is present in the engine of js(V8 engine)
+-->
+
+</html>
