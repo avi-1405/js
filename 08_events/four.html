@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Chai aur JavaScript</h2>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    const sayDate= function(str){
+        console.log(str,Date.now())
+    }
+
+    
+    let intervalId
+    document.querySelector('#start').addEventListener('click',function(){
+        //always reference the variable only after checking the null property bcoz it may cause some error when assigning to a null variable
+        if(!intervalId)
+        intervalId = setInterval(sayDate, 1000, "hi")
+    })
+    document.querySelector('#stop').addEventListener('click', function () {
+        clearInterval(intervalId)
+
+        //after clearing the interval we need to nulify the variable so that the memory is cleared and dereferencing of a variable can occur.
+        intervalId=null
+    })
+</script>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html Events</title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+   <h2>Amazing image</h2>
+   <div>
+        <ul id="images">
+        <li><img width="200px" id="photoshop"
+                src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                alt="photoshop"></li>
+        <li><img width="200px" id="japan"
+                src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                alt=""></li>
+        <li><img width="200px" id="river"
+                src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                alt=""></li>
+        <li><img width="200px" id="owl"
+                src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"`
+                alt=""></li>
+
+        <!--++++++++++++++++++++ 1st approach of adding event ++++++++++++++++++++++++++ -->
+
+        <!-- <li><img width="200px" id="owl"
+        src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+        alt="" onclick="alert('owl')"></li> -->
+        
+        <!--not a good approach to add event-->
+
+
+
+        <li><img width="200px" id="prayer"
+                src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                alt=""></li>
+        <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+    </div>
+</body>
+<script>
+        //js is a sequentially run language
+        //in js , events execute sequetially except some exceptions
+        //events invoke for some activity like mouse movement,mouse clicking,keyboard clicking,etc. 
+
+
+        //++++++++++++++++++++++++++++++ 2nnd approach of adding event +++++++++++++++++
+
+        // document.getElementById('owl').onclick=function(){
+        //         alert("owl clicked")
+        // }
+
+        // this onclick event approach is also not good because it gives less features as compared to eventListener.
+        // eventListener provides many functionality not only onclick .
+        //it also provides propagation ability 
+
+
+
+        // +++++++++++++++++++++++++  3rd approach of adding event ++++++++++++++++++
+        
+        // document.getElementById('owl').addEventListener('click',function(){
+        //         alert("owl clicked again")
+        // })
+
+        // ++++++++++++++++++++++++++++ eventObject ++++++++++++++++++++++++++++++
+                                
+        // we need to work on the event, hence we need to carry it with a function . and the parameter of the function is called an eventObject.
+        document.getElementById('owl').addEventListener('click',function(e){
+                console.log(e)
+        },false)
+
+        //there are 3 parameters of eventListener : 1st- event , 2nd - function of event, 3rd - true/false
+        // by default the 3rd parameter of eventListener is false.
+
+
+        //++++++++++++++++++++++++++  most useful events are following: +++++++++++++++++
+
+        //type, timestamp, defaultPrevented
+        //target, toElement, srcElement, currentTarger
+        //clientX, clientY, screenX, screenY
+        //altkey, ctrlkey, shiftkey, keyCode
+
+
+        
+        //++++++++++++++++++++++++++ event propagation +++++++++++++++++++++++++
+        
+        // it has 2 context :      1st- event bubbling - false (most used)(by default)
+                                // 2nd- event capturing - true
+
+
+        //event bubbling(false) - propagate from inside to outside : niche se upar jana 
+        document.getElementById('images').addEventListener('click',function(e){
+                console.log("clicked inside the ul")
+        },false)
+
+        document.getElementById('owl').addEventListener('click', function (e) {
+                console.log("owl clicked")
+
+                //++++++++++ stop event propagation +++++++++++
+                e.stopPropagation()
+
+                //in this the event don't propagate , it stops after functioning it's work 
+
+        }, false)
+
+
+
+        //event capturing(true) - propagate from outside to inside : upar se niche jana 
+        document.getElementById('images').addEventListener('click', function (e) {
+                console.log("clicked inside the ul")
+        }, true)
+
+        document.getElementById('owl').addEventListener('click', function (e) {
+                console.log("owl clicked")
+        }, true)
+
+
+        
+        // ++++++++++++++++++++++  prevent default ++++++++++++++++++
+
+        document.getElementById('google').addEventListener('click',function(e){
+                console.log('google clicked')
+                e.preventDefault();
+                e.stopPropagation()
+                                
+        },false)
+
+
+        //++++++++++++++++++ 4th approach ->not used in modern time ++++++++++++++++++
+
+        //attachEvent -> it is a method , used in early times when we run our websites on Internet Explorer
+
+        //+++++++++++++++++++ 5th approach -> using jQuery framework +++++++++++++++++
+        
+        // on -> using ".on" we can listen our events same as addEventListener in jQuery framework
+        
+
+
+
+
+        
+</script>
+</html>

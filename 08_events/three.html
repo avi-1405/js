@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Chai aur Code</h2>
+
+    <button id="stop">Stop</button>
+</body>
+<script>
+    // setTimeout is a method but it also behave as a web API.
+    setTimeout(function () {
+        console.log("Avinash")
+    }, 2000)
+
+    // using a reference 
+    const sayAvinash = function () {
+        console.log("Avinash")
+    }
+    setTimeout(sayAvinash, 2000)
+    //here if we write sayAvinash() as this then it is called execution of function which is prohibited . we only need to provide the reference of the function
+
+    const changeText = function () {
+        document.querySelector('h2').innerHTML = "Best JS Series"
+    }
+
+    const changeMe = setTimeout(changeText, 4000)
+
+    document.querySelector("#stop").addEventListener('click', function () {
+        clearTimeout(changeMe)
+        console.log("STOPPED")
+    })
+</script>
+
+</html>
