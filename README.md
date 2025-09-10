@@ -1,2 +1,2 @@
-# js
-A code repo for javascript series
+# JavaScript
+Beginning of a new journey.
